@@ -117,12 +117,11 @@ module FIFO_Mem #(parameter DEPTH=8,parameter WIDTH =8,parameter PTR_WIDTH=3)(
                 fifo[bin_wptr[PTR_WIDTH-1:0]] <= data_in;
             end
         end 
-//        always @(posedge rd_clk) begin
-//            if(rd_en&&!empty) begin
-//                data_out <= fifo[bin_rdptr[PTR_WIDTH-1:0]];
-//            end
-//        end
-        assign data_out = fifo[bin_rdptr[PTR_WIDTH-1:0]];
+       always @(posedge rd_clk) begin
+           if(rd_en&&!empty) begin
+               data_out <= fifo[bin_rdptr[PTR_WIDTH-1:0]];
+           end
+       end
 endmodule
 
 module Asynchronous_FIFO #(parameter DEPTH=8, parameter WIDTH=8)(
